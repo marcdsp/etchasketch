@@ -19,7 +19,7 @@ function createGrid(rows) {
     });
 
          // Add an onmouseenter event listener to each cell for touchmove
-    cell.addEventListener("touchmove", function() {
+    cell.addEventListener("touchstart", function() {
       this.style.backgroundColor = "black"; //this is where I'll add the set color function
     });
 
