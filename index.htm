@@ -6,12 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etch-A-Sketch</title>
     <link rel="stylesheet" href="styles.css">
-    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="script.js" defer></script>
 </head>
 <body>
     <div class="title"><h1>Etch-A-Sketch</h1></div>
-    <div class="content">
-        <code id="code"></code>
+    <div Id="container" class="container">
     </div>
     <div class="controls">Controls
         <div class="controlsLeft">Controls Left
@@ -19,7 +18,7 @@
             <div class="controlsText"></div>
         </div>
         <div class="controlsRight">Controls Right
-            <div class="controlsButtons"><input type="button" onclick="genDivs(6)" value="click me"> </div>
+            <div class="controlsButtons"><input type="button" onclick="createGrid(6)" value="click me"> </div>
             <div class="controlsButtons"></div>
             <div class="controlsButtons"></div>
         </div>
