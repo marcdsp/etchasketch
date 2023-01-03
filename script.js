@@ -13,8 +13,13 @@ function createGrid(rows) {
       cell.classList.add("cell");
       cell.id = "cell-" + i;
 
-          // Add an onmouseenter event listener to each cell
+          // Add an onmouseenter event listener to each cell for mouseenter
     cell.addEventListener("mouseenter", function() {
+      this.style.backgroundColor = "black"; //this is where I'll add the set color function
+    });
+
+         // Add an onmouseenter event listener to each cell for touchmove
+    cell.addEventListener("touchmove", function() {
       this.style.backgroundColor = "black"; //this is where I'll add the set color function
     });
 
