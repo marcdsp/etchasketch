@@ -1,19 +1,19 @@
+:root {
+  --cellSize: 25%;
+}
+
 #container {
     display: flex;
     flex-wrap: wrap;
-    width: 550px;
-    height: 550px;
+    width: 600px;
+    height: 600px;
     border: 0.2px solid black;
-    background-color: white;
     box-sizing: border-box;
   }
   
   .cell {
-    width: calc(100% / 64);
-    height: calc(100% / 64);
-    border: 0.2px solid black;
-    background-color: white;
+    width: var(--cellSize);
+    height: var(--cellSize);
+    border: 0.2px solid black; 
     box-sizing: border-box;
-
-
   }
