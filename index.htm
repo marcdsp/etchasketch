@@ -18,8 +18,13 @@
             <div class="controlsText"></div>
         </div>
         <div class="controlsRight">Controls Right
-            <div class="controlsButtons"><input type="button" onclick="createGrid(23);" value="click me"></div>
-            <div class="controlsButtons"></div>
+            <div class="controlsButtons"><input type="button"  onclick="createGrid(gridSize)" value="Reset Grid"></div>
+            <div class="controlsButtons"><input type="button" id="blue" value="Blue"></div>
+            <div class="controlsButtons"><input type="button" id="black" value="Black"></div>
+            <div class="controlsButtons"><input type="button" id="pink" value="Pink"></div>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="80" value="20" class="slider" id="myRange" onchange="setGridSize(this.value)">
+              </div>
             <div class="controlsButtons"></div>
         </div>
     </div>

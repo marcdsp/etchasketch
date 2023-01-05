@@ -1,8 +1,53 @@
  // need to add a slider that output a varying size number
 let color = "black";
+let gridSize = 20;
+createGrid(gridSize);
+
+//get blue button element
+let blueButton = document.getElementById("blue");
+
+document.getElementById("blue").addEventListener("click", changeColor);
+document.getElementById("black").addEventListener("click", changeColor);
+document.getElementById("pink").addEventListener("click", changeColor);
+
+function changeColor() { 
+ color = this.id;
+}
+
+
+
+
+
+
+//removes all divs when calling creategrid and clicking the erase button
+function removeAllChildNodes(parent) {
+  while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+  }
+}
+
+
+function setGridSize(size) {
+  gridSize = size;
+  createGrid(gridSize);
+}
+
+
+
 
 function createGrid(rows) {
   var container = document.getElementById("container");
+  if (container.hasChildNodes()) {
+    removeAllChildNodes(container);
+      }
+      for (var i = 0; i < rows; i++) {
+        var row = document.createElement("div");
+        row.classList.add("row");;
+      }
+      for (var i = 0; i < rows; i++) {
+        var row = document.createElement("div");
+        row.classList.add("row");
+}
   var cells = rows * rows; 
     for (var i = 0; i < cells; i++) {
       var cell = document.createElement("div");
@@ -21,10 +66,6 @@ function colorChoice(rows) {
   let color = rows;
 }
 
-//reload the dom
-function reset() {
-  window.location.reload()
-}
 
 // create random color rainbow option
 function randomColor() {
