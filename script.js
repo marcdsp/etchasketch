@@ -1,17 +1,12 @@
-function setRainbow() {
-  rainbow = 2;
-}
-
 // need to add a slider that output a varying size number
-let color = "black";
+let color = 'black';
 let gridSize = 20;
-let rainbow = 2;
 createGrid(gridSize);
-console.log(rainbow)
-//get blue button element
-let blueButton = document.getElementById("blue");
 
-console.log(rainbow)
+//this sets the color to 1 which is used in the event delegation to enable the randomColor/rainbow mode
+function setRainbow() {
+    color = 1;
+}
 
 //listeners
 document.getElementById("blue").addEventListener("click", changeColor);
@@ -19,84 +14,72 @@ document.getElementById("black").addEventListener("click", changeColor);
 document.getElementById("rainbow").addEventListener("click", setRainbow);
 document.getElementById("slider").addEventListener("input", setGridSize);
 
-function changeColor() { 
- color = this.id;
-rainbow = false;
+//event delegation for the shading on mousenter nested if statement to switch between solid color and rainbow effect
+document.getElementById("container").addEventListener("mouseover", function(e) {
+    console.log(e);
+    const target = e.target;
+    console.log(target);
+    if (target.matches("div#cell.cell")) {
+        if (color == 1) {
+            target.style.backgroundColor = randomColor();
+        } else {
+            target.style.backgroundColor = color;
+        }
+    }
+});
+
+//when a solid color button is clicked this is what is called to set the color
+function changeColor() {
+    color = this.id;
 }
-
-
-
-setRainbow(true);
-console.log(rainbow)
-
-var setGridSize = function() {
-}
-
 
 //removes all divs when calling creategrid and clicking the erase button
 function removeAllChildNodes(parent) {
-  while (parent.firstChild) {
-      parent.removeChild(parent.firstChild);
-  }
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
 }
 
-
+//used to set the size of thew grid based on the sliders value, this is called from the slider function
 function setGridSize() {
-  gridSize = this.value;
-  createGrid(gridSize);
+    gridSize = this.value;
+    createGrid(gridSize);
 }
 
 //function for adding the rainbow function on the grid creator color settings
-
-
-
 function createGrid(rows) {
-  var container = document.getElementById("container");
-  if (container.hasChildNodes()) {
-    removeAllChildNodes(container);
-      }
-      for (var i = 0; i < rows; i++) {
-        var row = document.createElement("div");
-        row.classList.add("row");;
-      }
-      for (var i = 0; i < rows; i++) {
-        var row = document.createElement("div");
-        row.classList.add("row");
-}
-  var cells = rows * rows; 
-    for (var i = 0; i < cells; i++) {
-      var cell = document.createElement("div");
-      cell.classList.add("cell");
-      cell.id = "cell-" + i;
-      cell.addEventListener("mouseenter", function() {
-      if (rainbow == 2) {this.style.backgroundColor = randomColor()}
-      this.style.backgroundColor = color; //***CAN I JUST MOVE THIS LISTENER OUT OF THIS FUNCTION???
-    });
-    container.appendChild(cell);
+    let container = document.getElementById("container");
+    if (container.hasChildNodes()) {
+        removeAllChildNodes(container);
+    }
+    let cells = rows * rows;
+    for (let i = 0; i < cells; i++) {
+        let cell = document.createElement("div");
+        cell.classList.add("cell");
+        cell.id = "cell";
+        container.appendChild(cell);
     }
     setSize(rows);
 }
 
 //update color variable based on
 function colorChoice(rows) {
-  let color = rows;
+    color = rows;
 }
-
 
 // create random color rainbow option
 function randomColor() {
-    var letters = '0123456789ABCDEF';
-    var rainbowColor = '#';
-    for (var i = 0; i < 6; i++) {
-      rainbowColor += letters[Math.floor(Math.random() * 16)];
+    let letters = '0123456789ABCDEF';
+    let rainbowColor = '#';
+    for (let i = 0; i < 6; i++) {
+        rainbowColor += letters[Math.floor(Math.random() * 16)];
     }
-      return rainbowColor;
-  }
-console.log(randomColor());
+    return rainbowColor;
+}
+
 // autosize cells based on cell qty, this is called from createGrid which I think is poorly efficient
 function setSize(rowQty) {
     const cellSize = (100 / rowQty) + '%';
     let root = document.querySelector(':root');
     root.style.setProperty('--cellSize', cellSize);
-    };
-
+};
